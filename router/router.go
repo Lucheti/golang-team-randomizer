@@ -7,6 +7,7 @@ import (
 
 func SetupRouter() *mux.Router {
 	r := mux.NewRouter()
+	r.HandleFunc("/status" , handlers.Status).Methods("GET")
 	r.HandleFunc("/newGame", handlers.NewGame).Methods("POST")
 	r.HandleFunc("/joinGame/{gameID}", handlers.JoinGame).Methods("POST")
 	r.HandleFunc("/list", handlers.List).Methods("GET")

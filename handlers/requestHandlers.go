@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/gorilla/mux"
 	"net/http"
 	"server/controllers"
@@ -10,6 +11,10 @@ import (
 
 var gameController = &controllers.GameControllerInstance
 var store = &utils.StoreInstance
+
+func Status(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "Server is running")
+}
 
 func NewGame(w http.ResponseWriter, r *http.Request) {
 	game, _ := gameController.Create()
