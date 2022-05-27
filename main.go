@@ -40,17 +40,19 @@ server:
 import (
 	"fmt"
 	"net/http"
+	"os"
 	"server/controllers"
 	"server/db"
 	"server/router"
 )
 
 func main() {
-	db := db.InitializeDB()
+	database := db.InitializeDB()
 	r := router.SetupRouter()
+	port := os.Getenv("PORT")
 
-	controllers.InitGameController(db)
+	controllers.InitGameController(database)
 
 	fmt.Println("Server started on port 8080")
-	http.ListenAndServe(":8080", r)
+	http.ListenAndServe(":" + port, r)
 }
